@@ -18,7 +18,4 @@ postInstHook oldHook args iflags pDesc lbi = do
   oldHook args iflags pDesc lbi
 
 
-postConfHook oldHook args flags descr buildInfo = case profFlag of
-  Flag True -> error "This library cannot be built using profiling. Try invoking cabal with the --disable-library-profiling flag."
-  _ -> oldHook args flags descr buildInfo
-  where profFlag = configProfLib $ configFlags buildInfo
+postConfHook oldHook args flags descr buildInfo = oldHook args flags descr buildInfo
